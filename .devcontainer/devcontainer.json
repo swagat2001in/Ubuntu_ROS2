@@ -1,0 +1,51 @@
+// ROS 2 Jazzy on Ubuntu 24.04, for GitHub Codespaces or local VS Code (Dev Containers).
+{
+  "name": "ROS 2 Jazzy (Ubuntu 24.04)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  "features": {
+    // Lightweight desktop for GUI tools (RViz2, rqt, Gazebo) in the browser via noVNC.
+    // Open the forwarded port 6080 and click "Connect" (no VNC password: the port is
+    // private to your GitHub account in Codespaces, and localhost-only when run locally).
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": { "label": "Desktop (noVNC)", "onAutoForward": "notify" }
+  },
+
+  "remoteUser": "ubuntu",
+  "init": true,
+  // Fast DDS uses shared memory; Docker's 64 MB default is too small for images or point clouds.
+  "runArgs": ["--shm-size=1g"],
+
+  "containerEnv": {
+    "ROS2_WS": "${containerWorkspaceFolder}/ros2_ws"
+  },
+  "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/post-create.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Ranch-Hand-Robotics.rde-ros-2",
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "C_Cpp.default.compileCommands": "${containerWorkspaceFolder}/ros2_ws/build/compile_commands.json",
+        "C_Cpp.default.includePath": [
+          "${containerWorkspaceFolder}/ros2_ws/src/**",
+          "/opt/ros/jazzy/include/**"
+        ],
+        "python.analysis.extraPaths": [
+          "/opt/ros/jazzy/lib/python3.12/site-packages"
+        ]
+      }
+    }
+  }
+}

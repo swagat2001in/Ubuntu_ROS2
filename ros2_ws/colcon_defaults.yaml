@@ -1,0 +1,7 @@
+# Picked up automatically when you run `colcon build` from this directory.
+build:
+  # Python edits and launch/config files take effect without rebuilding.
+  symlink-install: true
+  cmake-args:
+    # Produces build/compile_commands.json, used by the C/C++ extension for IntelliSense.
+    - -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
