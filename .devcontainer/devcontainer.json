@@ -7,9 +7,12 @@
 
   "features": {
     // Lightweight desktop for GUI tools (RViz2, rqt, Gazebo) in the browser via noVNC.
-    // Open the forwarded port 6080 and click "Connect" (no VNC password: the port is
-    // private to your GitHub account in Codespaces, and localhost-only when run locally).
-    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+    // Open the forwarded port 6080, click "Connect" and enter the password below.
+    // Kept on purpose: the user has passwordless sudo, so a port accidentally made
+    // public in Codespaces must not hand out a desktop without a password.
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "password": "vscode"
+    }
   },
   "forwardPorts": [6080],
   "portsAttributes": {

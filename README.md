@@ -24,7 +24,8 @@ ros2 run demo_nodes_py listener   # prints "I heard: [Hello World: N]"
 ## GUI tools (RViz2, rqt)
 
 1. Open the **Ports** tab and open port **6080 – Desktop (noVNC)** in the browser.
-2. Click **Connect**. No password is needed: the port is private to your GitHub account.
+2. Click **Connect** and enter the password `vscode` (set in `.devcontainer/devcontainer.json`).
+   Keep port 6080 **private** in the Ports tab: the container user has passwordless sudo.
 3. Run a GUI tool from any VS Code terminal, for example `rviz2`. It appears on that desktop.
 
 There is no GPU, so rendering is done in software. That is fine for RViz2 and rqt, but slow for
